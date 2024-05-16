@@ -1,20 +1,24 @@
-import { getMovies } from '@/app/services/omdb';
-import { Movie } from '@/app/_types/Movie';
 import { useState, useEffect } from 'react';
 import { useErrorHandler } from './useErrorHandler';
+import { useDebounce } from './useDebounce';
+import { Movie } from '@/types/Movie';
+import { getMovies } from '@/app/services/omdb';
 
 export function useMovies(search: string): Movie[] {
   const [movies, setMovies] = useState<Movie[]>([]);
   const { handleError } = useErrorHandler();
+  const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        if (search.length > 2) {
-          const movies = await getMovies(search);
-          setMovies(movies);
+        if (debouncedSearch.length > 2) {
+          const fetchedMovies = await getMovies(debouncedSearch);
+          setMovies(fetchedMovies);
+          handleError(null); 
+        } else {
+          setMovies([]); 
         }
-        handleError(null); 
       } catch (error) {
         handleError((error as Error).message);
         setMovies([]);
@@ -22,7 +26,7 @@ export function useMovies(search: string): Movie[] {
     };
 
     fetchMovies();
-  }, [search, handleError]);
+  }, [debouncedSearch]);
 
   return movies;
 }

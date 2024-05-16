@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useMovies } from '@/hooks/useMovies';
 import { useErrorHandler } from '@/hooks/useErrorHandler';
-import MovieList from './_components/MovieList';
+import MovieList from '@/components/MovieList';
 
 export default function Home() {
   const [search, setSearch] = useState<string>("");

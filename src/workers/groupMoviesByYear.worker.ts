@@ -1,4 +1,4 @@
-import { Movie } from "@/app/_types/Movie";
+import { Movie } from "@/types/Movie";
 
 export interface GroupMoviesByYearMessage {
   movies: Movie[];
