@@ -1,42 +1,37 @@
 "use client"
 
+import React, { useState } from 'react';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
-import React, { useEffect, useState } from 'react'
-import { getMovies } from './_apis/omdb';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useMovies } from '@/hooks/useMovies';
+import { useErrorHandler } from '@/hooks/useErrorHandler';
 import MovieList from './_components/MovieList';
-import { Movie } from './_types/Movie';
-
 
 export default function Home() {
-
-  const [movies, setMovies] = useState<Movie[]>([]);
   const [search, setSearch] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        if (search.length > 2) {
-          const movies = await getMovies(search);
-          setMovies(movies);
-        }
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchMovies();
-  }, [search]);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const debouncedSearch = useDebounce(search, 500);
+  const movies = useMovies(debouncedSearch);
+  const { error } = useErrorHandler();
 
   return (
-    <div>
-      <div className='flex flex-row items-center justify-start gap-x-2.5 py-5'>
-      <h1>OMDB</h1>
-      <Input value={search} onChange={(e) => setSearch(e.target.value)} />
+    <div className="container mx-auto px-4">
+      <div className='flex flex-col items-start py-5'>
+        <h1 className="text-2xl font-bold mb-4">OMDB</h1>
+        <div className='flex flex-row items-center justify-start gap-x-2.5 w-full'>
+          <Input 
+            value={search} 
+            onChange={(e) => setSearch(e.target.value)} 
+            placeholder="Search for movies..." 
+            className="w-full sm:w-2/3 lg:w-1/2"
+          />
+        </div>
+        {error && (
+          <Alert className="mt-4 w-full sm:w-2/3 lg:w-1/2">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
       </div>
       <MovieList movies={movies} />
     </div>
