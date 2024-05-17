@@ -1,5 +1,7 @@
 # OMDB Movies Application
 
+Live Preview: https://open-movie-database-exe8qjqtj.vercel.app/
+
 This application consumes the public OMDB API to display movie results grouped by year
 
 ## Features
