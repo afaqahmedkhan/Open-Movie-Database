@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
-import { getMovieDetails } from '@/app/api/omdb';
 import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
+import { getMovieDetailsAction } from '@/app/actions/movieActions';
 
 interface MovieDetailsProps {
   params: { id: string };
 }
 
 const MovieDetails = async ({ params }: MovieDetailsProps) => {
-  const movie = await getMovieDetails(params.id);
+  const movie = await getMovieDetailsAction(params.id);
   if (!movie) {
     notFound();
   }
