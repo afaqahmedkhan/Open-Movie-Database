@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useErrorHandler } from './useErrorHandler';
 import { useDebounce } from './useDebounce';
 import { Movie } from '@/types/Movie';
-import { getMovies } from '@/app/services/omdb';
+import { getMovies } from '@/app/api/omdb';
 
 export function useMovies(search: string): Movie[] {
   const [movies, setMovies] = useState<Movie[]>([]);
