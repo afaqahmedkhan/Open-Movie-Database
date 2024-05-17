@@ -19,7 +19,7 @@ const MovieDetails = async ({ params }: MovieDetailsProps) => {
     <div className="container mx-auto px-4 py-5">
       <Card className="max-w-2xl mx-auto">
         <CardContent>
-          <CardTitle className="text-3xl font-bold">{movie.Title}</CardTitle>
+          <CardTitle className="text-3xl font-bold mt-3">{movie.Title}</CardTitle>
           <CardDescription className="text-lg mt-2">{movie.Plot}</CardDescription>
           <img src={movie.Poster} alt={movie.Title} className="w-full mt-4" />
           <div className="mt-4">

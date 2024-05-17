@@ -15,12 +15,12 @@ function MovieList({ movies }: MovieListProps) {
     <div>
       {Object.keys(groupedMovies).map(year => (
         <div key={year} className="mb-6">
-          <Card className="p-4">
+          <Card className="p-4 bg-gray-950 text-white">
             <CardHeader>
               <CardTitle className="text-xl">{year}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <ul className="flex gap-4">
                 {groupedMovies[year].map(movie => (
                   <MovieListItem key={movie.imdbID} movie={movie} />
                 ))}

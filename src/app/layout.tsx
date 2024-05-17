@@ -20,12 +20,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-background min-h-screen font-sans antialiased px-10",
+          "min-h-screen font-sans antialiased bg-gray-950",
           inter.variable
         )}
       >
-        <Header/>
-        {children}
+        <Header />
+        <div className="px-10">
+          {children}
+        </div>
       </body>
     </html>
   )
