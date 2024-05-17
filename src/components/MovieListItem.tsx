@@ -8,7 +8,7 @@ interface MovieListItemProps {
   movie: Movie;
 }
 
-const MovieListItem: React.FC<MovieListItemProps> = ({ movie }) => {
+function MovieListItem({ movie }: MovieListItemProps) {
   return (
     <Card className="p-4">
       <CardHeader className="pb-2">

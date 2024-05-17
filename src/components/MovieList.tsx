@@ -8,7 +8,7 @@ interface MovieListProps {
   movies: Movie[];
 }
 
-const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+function MovieList({ movies }: MovieListProps) {
   const groupedMovies = useGroupedMovies(movies);
 
   return (

@@ -6,6 +6,9 @@ interface MovieDetailsProps {
   params: { id: string };
 }
 
+/**
+ * Movie details component shows details of the movie requested
+ */
 const MovieDetails = async ({ params }: MovieDetailsProps) => {
   const movie = await getMovieDetailsAction(params.id);
   if (!movie) {

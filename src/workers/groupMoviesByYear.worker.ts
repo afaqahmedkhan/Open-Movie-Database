@@ -8,6 +8,9 @@ export interface GroupedMoviesByYear {
   [year: string]: Movie[];
 }
 
+/**
+ * Listens for messages to group movies by year
+ */
 onmessage = function (e: MessageEvent<GroupMoviesByYearMessage>) {
   const movies = e.data.movies;
   const groupedMovies = movies.reduce((acc: GroupedMoviesByYear, movie) => {
