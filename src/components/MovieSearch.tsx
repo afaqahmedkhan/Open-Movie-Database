@@ -32,7 +32,7 @@ export default function MovieSearch() {
             placeholder="Search for movies..."
             className="w-full sm:w-2/3 lg:w-1/2"
           />
-          <Button variant="ghost" onClick={() => fetchMovies()}>
+          <Button variant="ghost" id="search" onClick={() => fetchMovies()}>
             <Search />
           </Button>
         </div>
