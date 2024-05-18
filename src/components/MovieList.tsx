@@ -20,7 +20,7 @@ function MovieList({ movies }: MovieListProps) {
               <CardTitle className="text-xl">{year}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="flex gap-4">
+              <ul className="flex gap-4 flex-wrap md:flex-auto">
                 {groupedMovies[year].map(movie => (
                   <MovieListItem key={movie.imdbID} movie={movie} />
                 ))}
